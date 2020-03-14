@@ -14,6 +14,7 @@ private:
 public:
     explicit DFT(std::vector<std::complex<double>> inSamples);
     auto getFourierTransform() -> std::vector<std::complex<double>>;
+    void setInputSignal(std::vector<std::complex<double>> inSamples);
 };
 
 

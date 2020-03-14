@@ -27,3 +27,8 @@ auto DFT::getFourierTransform() -> std::vector<std::complex<double>> {
     }
     return mFourierTransformSamples;
 }
+
+void DFT::setInputSignal(std::vector<std::complex<double>> inSamples) {
+    mTimeDomainSignalSamples = std::move(inSamples);
+    bCalculatedDft = false;
+}
