@@ -21,7 +21,6 @@ std::vector<std::complex<double> > DFT::computeDft() {
 
 auto DFT::getFourierTransform() -> std::vector<std::complex<double>> {
     if (mFourierTransformSamples.empty() || !bCalculatedDft) {
-        printf("calculating dft");
         mFourierTransformSamples = computeDft();
         bCalculatedDft = true;
     }
