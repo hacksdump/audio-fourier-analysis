@@ -1,6 +1,10 @@
 #include "WaveFactory.h"
+#include "NyquistLimitException.h"
 
 auto WaveFactory::generateSineWaveReal(double frequency, double amplitude, double sampleRate, double duration) -> std::vector<double> {
+    if (2 * frequency > sampleRate) {
+        throw NyquistLimitException();
+    }
     int numberOfSamples = static_cast<int>(sampleRate * duration);
     std::vector<double> outSamples;
     for (int sampleIdx = 0; sampleIdx < numberOfSamples; sampleIdx++) {
