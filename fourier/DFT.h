@@ -5,16 +5,19 @@
 #include <vector>
 #include <complex>
 
+typedef std::complex<double> ComplexNumber;
+typedef std::vector<ComplexNumber> ComplexNumberSeries;
+
 class DFT {
 private:
-    std::vector<std::complex<double>> mTimeDomainSignalSamples;
-    std::vector<std::complex<double>> mFourierTransformSamples;
+    ComplexNumberSeries mTimeDomainSignalSamples;
+    ComplexNumberSeries mFourierTransformSamples;
     bool bCalculatedDft = false;
-    std::vector<std::complex<double>> computeDft();
+    ComplexNumberSeries computeDft();
 public:
-    explicit DFT(std::vector<std::complex<double>> inSamples);
-    auto getFourierTransform() -> std::vector<std::complex<double>>;
-    void setInputSignal(std::vector<std::complex<double>> inSamples);
+    explicit DFT(ComplexNumberSeries inSamples);
+    auto getFourierTransform() -> ComplexNumberSeries ;
+    void setInputSignal(ComplexNumberSeries inSamples);
 };
 
 
