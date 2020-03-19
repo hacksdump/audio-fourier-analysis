@@ -8,8 +8,8 @@
 
 class WaveFactory {
 public:
-    auto generateSineWaveReal(double frequency, double amplitude, double sampleRate, double duration) -> std::vector<double>;
-    auto generateSineWaveComplex(double frequency, double amplitude, double sampleRate, double duration) -> std::vector<std::complex<double>>;
+    static auto generateSineWaveReal(double frequency, double amplitude, double sampleRate, double duration) -> std::vector<double>;
+    static auto generateSineWaveComplex(double frequency, double amplitude, double sampleRate, double duration) -> std::vector<std::complex<double>>;
 };
 
 
