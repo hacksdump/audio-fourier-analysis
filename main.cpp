@@ -8,9 +8,9 @@ int main() {
     DFT dft(timeDomainWave);
     double maxValue = 0;
     int maxFrequency = 0;
-    auto transformValues = dft.getFourierTransform();
-    for (int idx = 0; idx < transformValues.size(); idx++) {
-        ComplexNumber num = transformValues.at(idx);
+    dft.fourierTransform();
+    for (int idx = 0; idx < dft.getSeries().size(); idx++) {
+        ComplexNumber num = dft.getSeries().at(idx);
         double frequencyDomainValue = abs(num);
         if (frequencyDomainValue > maxValue) {
             maxValue = frequencyDomainValue;
