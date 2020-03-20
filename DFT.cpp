@@ -24,6 +24,18 @@ void DFT::fourierTransform() {
 }
 
 void DFT::inverseFourierTransform() {
+    const std::complex<double> iota(0, 1);
+    std::vector<std::complex<double>> transform;
+    size_t n = mSampleSeries.size();
+    for (size_t k = 0; k < n; k++) {
+        std::complex<double> sum(0.0, 0.0);
+        for (size_t t = 0; t < n; t++) {
+            sum += static_cast<double>(1.0 / mSampleSeries.size()) * mSampleSeries[t] * std::exp(2 * M_PI * iota *
+                                               static_cast<double>(t) * static_cast<double>(k) / static_cast<double>(n));
+        }
+        transform.push_back(sum);
+    }
+    mSampleSeries = transform;
 }
 
 void DFT::setSeries(ComplexNumberSeries inSamples) {
