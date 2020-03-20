@@ -10,14 +10,13 @@ typedef std::vector<ComplexNumber> ComplexNumberSeries;
 
 class DFT {
 private:
-    ComplexNumberSeries mTimeDomainSignalSamples;
-    ComplexNumberSeries mFourierTransformSamples;
-    bool bCalculatedDft = false;
-    ComplexNumberSeries computeDft();
+    ComplexNumberSeries mSampleSeries;
 public:
     explicit DFT(ComplexNumberSeries inSamples);
-    auto getFourierTransform() -> ComplexNumberSeries ;
-    void setInputSignal(ComplexNumberSeries inSamples);
+    auto getSeries() -> ComplexNumberSeries;
+    void fourierTransform();
+    void inverseFourierTransform();
+    void setSeries(ComplexNumberSeries inSamples);
 };
 
 
