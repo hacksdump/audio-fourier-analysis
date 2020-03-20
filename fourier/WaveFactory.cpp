@@ -8,7 +8,7 @@ auto WaveFactory::generateSineWaveReal(double frequency, double amplitude, doubl
     int numberOfSamples = static_cast<int>(sampleRate * duration);
     std::vector<double> outSamples;
     for (int sampleIdx = 0; sampleIdx < numberOfSamples; sampleIdx++) {
-        double sample = amplitude * sin(2 * M_PI * frequency * sampleIdx);
+        double sample = amplitude * sin(2 * M_PI * frequency * sampleIdx / sampleRate);
         outSamples.emplace_back(sample);
     }
     return outSamples;
