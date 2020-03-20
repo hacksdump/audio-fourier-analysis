@@ -3,20 +3,38 @@
 #include "DFT.h"
 #include "WaveFactory.h"
 
-int main() {
-    ComplexNumberSeries timeDomainWave = WaveFactory::generateSineWaveComplex(300, 1, 800, 1);
-    DFT dft(timeDomainWave);
+int getMaxIdx(ComplexNumberSeries series) {
     double maxValue = 0;
-    int maxFrequency = 0;
-    dft.fourierTransform();
-    for (int idx = 0; idx < dft.getSeries().size(); idx++) {
-        ComplexNumber num = dft.getSeries().at(idx);
+    int maxIdx = 0;
+    for (int idx = 0; idx < series.size(); idx++) {
+        ComplexNumber num = series.at(idx);
         double frequencyDomainValue = abs(num);
         if (frequencyDomainValue > maxValue) {
             maxValue = frequencyDomainValue;
-            maxFrequency = idx;
+            maxIdx = idx;
         }
     }
-    std::cout << maxFrequency;
+    return maxIdx;
+}
+
+int main() {
+    double frequency = 1.5;
+    int amplitude = 1;
+    int sampleRate = 2000;
+    double duration = 5;
+    ComplexNumberSeries timeDomainWave = WaveFactory::generateSineWaveComplex(
+            frequency,
+            amplitude,
+            sampleRate,
+            duration);
+    DFT dft(timeDomainWave);
+    dft.fourierTransform();
+    ComplexNumberSeries halfSeries;
+    for (int idx = 0; idx < dft.getSeries().size() / 2; idx++) {
+        halfSeries.emplace_back(dft.getSeries().at(idx));
+    }
+    std::cout << "Most probable frequency: "
+            << getMaxIdx(halfSeries) / duration
+            << std::endl;
     return 0;
 }
